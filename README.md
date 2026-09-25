@@ -88,6 +88,22 @@ Two spots were patched:
    Files: `queued-send-submit.before.js`, `queued-send-submit.after.js`,
    `queued-send-submit.patch`.
 
+### Scope of the change
+
+The patches fire whenever the ACP session status is "working" (any open turn),
+not only when background subagents are running. Behavior by turn state:
+
+| Turn state | Before (typed + Enter) | After |
+|---|---|---|
+| Background subagents running | Message queues; force-send issues `session/cancel` and kills the subagents | Message steers into the open turn; subagents keep running |
+| Foreground work in progress | Message queues; force-send issues `session/cancel` and aborts the in-flight step | Message steers in; current step finishes, agent sees it next iteration |
+| Turn waiting on permission question | Auto-sent already | Same |
+
+Untouched paths: cloud sessions (`queuedMessages/update` `send_now` is kept via
+the `!eC` guard), the Cascade agent system, manual queue operations in the
+queue panel, and the explicit Stop button (`cancelInvocation`, which still
+sends a real `session/cancel` for intentional aborts).
+
 ## The repro
 
 `repro/acp-probe.js` is a standalone Node script that speaks ACP over stdio to
