@@ -1,0 +1,1 @@
+async function tgp(e,t,n,r,i){let a,s=new Promise(e=>{a=e}),l=eTc(n).sessionId,c=(e,t)=>("session/prompt"===t.method&&(t.params.sessionId===n||t.params.sessionId===l)&&a(),i(e,t)),u=e.dispatch(eGQ(t,n,r,c));return await Promise.race([s,u,new Promise(e=>setTimeout(e,5e3))]),{sent:u}}

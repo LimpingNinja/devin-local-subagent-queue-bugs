@@ -1,0 +1,56 @@
+# EXCERPT: devin_20260924-144258_21620.log
+# Host: Devin Desktop -> `devin.exe acp` (PID 21620). Session: meowing-drum.
+# Repro of FAILURE #1: sending a queued message in Desktop emits session/cancel,
+# which kills running background subagents ("Canceled by user").
+# Timeline annotations prefixed with '# @'.
+2026-09-24T21:43:00.346786Z  INFO run_acp_server:acp_bridge_dispatch{method="session/new" queue_wait_ms=0}:new_session:create_acp_agent:setup_agent:load_all_skills:load_workspace_skills: chisel_agent::skills_loading: skills discovery: cwd=C:\Users\limpingninja\CascadeProjects\NotoriusPTY workspace_root=C:\Users\limpingninja\CascadeProjects\NotoriusPTY additional_dirs=0 providers=[devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot] scanned_scopes=2 loaded=3 by_provider=[builtin=3] errors=0
+2026-09-24T21:43:00.430952Z  INFO run_acp_server:acp_bridge_dispatch{method="session/new" queue_wait_ms=0}:new_session:register_session: chisel_agent::skills_loading: skills discovery: cwd=C:\Users\limpingninja\CascadeProjects\NotoriusPTY workspace_root=C:\Users\limpingninja\CascadeProjects\NotoriusPTY additional_dirs=1 providers=[devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot] scanned_scopes=2 loaded=3 by_provider=[builtin=3] errors=0
+2026-09-24T21:43:26.279678Z  INFO run_acp_server:acp_bridge_dispatch{method="ext_method" queue_wait_ms=0}:ext_method{method=cognition.ai/skills/list}: chisel_agent::skills_loading: skills discovery: cwd=C:\Users\limpingninja\CascadeProjects\NotoriusPTY workspace_root=C:\Users\limpingninja\CascadeProjects\NotoriusPTY additional_dirs=0 providers=[devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot] scanned_scopes=2 loaded=3 by_provider=[builtin=3] errors=0
+2026-09-24T21:43:26.433255Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session: chisel_agent::acp_server::agent_impl: ACP: loading session meowing-drum
+2026-09-24T21:43:26.469754Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:setup_agent:load_all_skills:load_workspace_skills: chisel_agent::skills_loading: skills discovery: cwd=C:\Users\kevin workspace_root=C:\Users\kevin additional_dirs=0 providers=[devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot] scanned_scopes=2 loaded=3 by_provider=[builtin=3] errors=0
+2026-09-24T21:45:33.076254Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 2 message nodes (starting from 232) for session meowing-drum
+2026-09-24T21:45:33.191979Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 75 message nodes (starting from 234) for session meowing-drum
+2026-09-24T21:45:48.642783Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 39 message nodes (starting from 309) for session meowing-drum
+2026-09-24T21:45:48.669401Z  INFO run_acp_server: chisel_core::translator: Permission decision for tool run_subagent: auto-decided Some(Allow) by cog
+2026-09-24T21:45:48.669450Z  INFO run_acp_server: chisel_core::translator: Permission decision for tool run_subagent: auto-decided Some(Allow) by cog
+2026-09-24T21:45:48.669480Z  INFO run_acp_server: chisel_core::translator: Permission decision for tool run_subagent: auto-decided Some(Allow) by cog
+2026-09-24T21:45:48.862681Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 18 message nodes (starting from 348) for session meowing-drum
+2026-09-24T21:45:52.548025Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 12 message nodes (starting from 366) for session meowing-drum
+2026-09-24T21:45:52.549578Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 378) for session meowing-drum
+2026-09-24T21:46:20.720123Z  INFO run_acp_server:acp_bridge_dispatch{method="session/cancel" queue_wait_ms=0}:cancel: chisel_agent::acp_server::agent_impl: close time.busy=184µs time.idle=2.30µs
+2026-09-24T21:46:20.720154Z  INFO run_acp_server:acp_bridge_dispatch{method="session/cancel" queue_wait_ms=0}: chisel_agent::acp_server: close time.busy=221µs time.idle=9.30µs
+2026-09-24T21:46:20.721073Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:await_turn_completion: chisel_agent::acp_server::agent_impl: close time.busy=124µs time.idle=47.7s
+2026-09-24T21:46:20.727826Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:save_session_state:session_db_call:session_db_job: chisel_agent::session_db: Saved 305 message nodes (starting from 0) for session meowing-drum
+2026-09-24T21:46:20.824122Z  WARN run_acp_server: chisel_agent::acp_server::agent_impl: ACP: subagent event for unknown child 9baa1048
+2026-09-24T21:46:20.923678Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 409) for session meowing-drum
+2026-09-24T21:46:22.684928Z  INFO run_acp_server:acp_bridge_dispatch{method="session/cancel" queue_wait_ms=0}:cancel: chisel_agent::acp_server::agent_impl: close time.busy=9.90µs time.idle=2.00µs
+2026-09-24T21:46:22.684963Z  INFO run_acp_server:acp_bridge_dispatch{method="session/cancel" queue_wait_ms=0}: chisel_agent::acp_server: close time.busy=48.8µs time.idle=9.90µs
+2026-09-24T21:46:22.686401Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 410) for session meowing-drum
+2026-09-24T21:46:22.687258Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:await_turn_completion: chisel_agent::acp_server::agent_impl: close time.busy=2.00µs time.idle=1.77s
+2026-09-24T21:46:22.691058Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:save_session_state:session_db_call:session_db_job: chisel_agent::session_db: Saved 307 message nodes (starting from 0) for session meowing-drum
+2026-09-24T21:46:22.866095Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:handle_slash_command_on_chain:session_db_call:session_db_job: chisel_agent::session_db: close time.busy=909µs time.idle=16.6µs
+2026-09-24T21:46:22.866112Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:handle_slash_command_on_chain:session_db_call: chisel_agent::session_db: close time.busy=10.5µs time.idle=1.07ms
+2026-09-24T21:46:50.392757Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:handle_slash_command_on_chain: chisel_api::bug_report: Bug report submitted: https://slack.com/archives/C09TSH1PA8M/p1790286409631099
+2026-09-24T21:46:50.395005Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:handle_slash_command_on_chain: chisel_agent::acp_server::slash_commands: close time.busy=53.0ms time.idle=27.5s
+2026-09-24T21:48:45.548719Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 3 message nodes (starting from 411) for session meowing-drum
+2026-09-24T21:48:53.796069Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 414) for session meowing-drum
+2026-09-24T21:48:53.796860Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 415) for session meowing-drum
+2026-09-24T21:48:54.078316Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:await_turn_completion: chisel_agent::acp_server::agent_impl: close time.busy=2.70µs time.idle=8.53s
+2026-09-24T21:48:54.083079Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:save_session_state:session_db_call:session_db_job: chisel_agent::session_db: Saved 312 message nodes (starting from 0) for session meowing-drum
+2026-09-24T21:49:29.896949Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 416) for session meowing-drum
+2026-09-24T21:49:33.489826Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 417) for session meowing-drum
+2026-09-24T21:49:33.492109Z  INFO run_acp_server: chisel_core::translator: Permission decision for tool read_subagent: auto-decided Some(Allow) by cog
+2026-09-24T21:49:33.492164Z  INFO run_acp_server: chisel_core::translator: Permission decision for tool read_subagent: auto-decided Some(Allow) by cog
+2026-09-24T21:49:33.492191Z  INFO run_acp_server: chisel_core::translator: Permission decision for tool read_subagent: auto-decided Some(Allow) by cog
+2026-09-24T21:49:33.493261Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 4 message nodes (starting from 418) for session meowing-drum
+2026-09-24T21:49:43.703222Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 422) for session meowing-drum
+2026-09-24T21:49:43.831068Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 3 message nodes (starting from 423) for session meowing-drum
+2026-09-24T21:49:48.281732Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 426) for session meowing-drum
+2026-09-24T21:49:48.424847Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 3 message nodes (starting from 427) for session meowing-drum
+2026-09-24T21:49:50.820038Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 1 message nodes (starting from 430) for session meowing-drum
+2026-09-24T21:49:51.071136Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 2 message nodes (starting from 431) for session meowing-drum
+2026-09-24T21:50:16.132086Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 2 message nodes (starting from 433) for session meowing-drum
+2026-09-24T21:50:16.133416Z  INFO run_acp_server:session_db_call:session_db_job: chisel_agent::session_db: Saved 0 message nodes (starting from 435) for session meowing-drum
+2026-09-24T21:50:16.316018Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:await_turn_completion: chisel_agent::acp_server::agent_impl: close time.busy=2.60µs time.idle=46.4s
+2026-09-24T21:50:16.320561Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:save_session_state:session_db_call:session_db_job: chisel_agent::session_db: Saved 331 message nodes (starting from 0) for session meowing-drum
+# [excerpt end -- 47 additional periodic 'skills discovery' poll lines omitted; they recur every 15s and are the ONLY log activity during the dead windows]

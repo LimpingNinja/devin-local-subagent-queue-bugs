@@ -1,0 +1,41 @@
+# EXCERPT: devin_20260924-150817_16956.log
+# Host: Devin CLI -> `devin.exe acp` (PID 16956), process started 22:08:17Z.
+# This is the NEXT process after the wedged one above was killed: the session
+# meowing-drum is re-loaded at 22:08:19Z and the re-sent /bug prompt enters
+# handle_slash_command_on_chain at 22:08:26Z -- it never returns. Final span
+# closes show idle=23488s (~6.5 HOURS) when session/end finally tears it down.
+# Repro of FAILURE #3: permanently stuck turn; resending prompts elicits nothing.
+2026-09-24T22:08:17.992847Z  INFO init_cli: chisel: version=3000.11.3 commit=9c803229faa4 os=windows arch=x86_64 binary=devin startup
+2026-09-24T22:08:17.993974Z  INFO run_acp_server: chisel_server::acp: Starting ACP server
+2026-09-24T22:08:17.993985Z  INFO run_acp_server: chisel_server::acp: ACP server PID: 16956
+2026-09-24T22:08:18.018492Z  INFO run_acp_server:init_acp_server: chisel_server::acp: close time.busy=24.0ms time.idle=524µs
+2026-09-24T22:08:18.026814Z  INFO run_acp_server: chisel_agent::process_memory: session DB inventory at boot: db_bytes=3608576 wal_bytes=4573232 shm_bytes=32768 total_rows=5 visible_rows=4 newest_last_activity_at=1790287239 newest_visible_ids[4]=meowing-drum,flint-wrinkle,mild-widget,scarce-friction
+2026-09-24T22:08:19.246072Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session: chisel_agent::acp_server::agent_impl: ACP: loading session meowing-drum
+2026-09-24T22:08:19.252594Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:store_load_session:session_db_call:session_db_job: chisel_agent::session_db: Lazy-loaded 233 of 820 message nodes for session meowing-drum, main_chain_id: Some(794)
+2026-09-24T22:08:19.253165Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:create_agent_client: chisel_server::acp: close time.busy=91.1µs time.idle=1.00µs
+2026-09-24T22:08:19.253382Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:managed_manifest_prefetch: chisel_server::acp: close time.busy=62.5µs time.idle=139µs
+2026-09-24T22:08:19.254005Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:team_settings_refresh: chisel_server::acp: close time.busy=664µs time.idle=152µs
+2026-09-24T22:08:19.268129Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:registry_reconcile: chisel_server::acp: close time.busy=14.1ms time.idle=846µs
+2026-09-24T22:08:19.271328Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:user_status_refresh: chisel_server::acp: close time.busy=3.19ms time.idle=14.9ms
+2026-09-24T22:08:19.271717Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:load_user_config: chisel_server::acp: close time.busy=152µs time.idle=201µs
+2026-09-24T22:08:19.271886Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:compute_read_config_from: chisel_server::acp: close time.busy=151µs time.idle=1.30µs
+2026-09-24T22:08:19.282444Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent:setup_agent:load_all_skills:load_workspace_skills: chisel_agent::skills_loading: skills discovery: cwd=C:\Users\kevin workspace_root=C:\Users\kevin additional_dirs=0 providers=[devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot] scanned_scopes=2 loaded=2 by_provider=[builtin=2] errors=0
+2026-09-24T22:08:19.320185Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:create_acp_agent: chisel_server::acp: close time.busy=41.3ms time.idle=25.9ms
+2026-09-24T22:08:19.330403Z  INFO run_acp_server:acp_bridge_dispatch{method="session/load" queue_wait_ms=0}:load_session:register_session: chisel_agent::skills_loading: skills discovery: cwd=C:\Users\kevin workspace_root=C:\Users\kevin additional_dirs=1 providers=[devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot] scanned_scopes=2 loaded=2 by_provider=[builtin=2] errors=0
+2026-09-24T22:08:26.086877Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:session_db_call:session_db_job: chisel_agent::session_db: close time.busy=149µs time.idle=15.9µs
+2026-09-24T22:08:26.086898Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:session_db_call: chisel_agent::session_db: close time.busy=7.50µs time.idle=182µs
+2026-09-24T22:08:26.087916Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:handle_slash_command_on_chain:session_db_call:session_db_job: chisel_agent::session_db: close time.busy=864µs time.idle=9.10µs
+2026-09-24T22:08:26.087935Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:handle_slash_command_on_chain:session_db_call: chisel_agent::session_db: close time.busy=5.60µs time.idle=888µs
+2026-09-24T22:08:33.030159Z  INFO run_acp_server: chisel_agent::skills_loading: skills discovery: cwd=C:\Users\kevin workspace_root=C:\Users\kevin additional_dirs=1 providers=[devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot] scanned_scopes=2 loaded=2 by_provider=[builtin=2] errors=0
+2026-09-24T22:08:48.039207Z  INFO run_acp_server: chisel_agent::skills_loading: skills discovery: cwd=C:\Users\kevin workspace_root=C:\Users\kevin additional_dirs=1 providers=[devin,agents_standard,cursor,windsurf,claude,opencode,zed,copilot] scanned_scopes=2 loaded=2 by_provider=[builtin=2] errors=0
+2026-09-24T22:10:02.675055Z  INFO run_acp_server:acp_bridge_dispatch{method="session/cancel" queue_wait_ms=0}:cancel: chisel_agent::acp_server::agent_impl: close time.busy=22.8µs time.idle=1.80µs
+2026-09-24T22:10:02.675080Z  INFO run_acp_server:acp_bridge_dispatch{method="session/cancel" queue_wait_ms=0}: chisel_agent::acp_server: close time.busy=53.3µs time.idle=9.70µs
+2026-09-25T04:39:54.366833Z  INFO run_acp_server:acp_bridge_dispatch{method="session/cancel" queue_wait_ms=0}:cancel: chisel_agent::acp_server::agent_impl: close time.busy=11.4µs time.idle=1.70µs
+2026-09-25T04:39:54.366856Z  INFO run_acp_server:acp_bridge_dispatch{method="session/cancel" queue_wait_ms=0}: chisel_agent::acp_server: close time.busy=38.1µs time.idle=16.1µs
+2026-09-25T04:39:54.367083Z  INFO run_acp_server:acp_bridge_dispatch{method="ext_method" queue_wait_ms=0}:ext_method{method=cognition.ai/session/end}: chisel_agent::acp_server::agent_impl: Received extension method: method=cognition.ai/session/end
+2026-09-25T04:39:54.368280Z  INFO run_acp_server:acp_bridge_dispatch{method="ext_method" queue_wait_ms=0}:ext_method{method=cognition.ai/session/end}: chisel_agent::acp_server::agent_impl: close time.busy=1.20ms time.idle=2.20µs
+2026-09-25T04:39:54.374795Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt:handle_slash_command_on_chain: chisel_agent::acp_server::slash_commands: close time.busy=12.3ms time.idle=23488s
+2026-09-25T04:39:54.374817Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}:prompt: chisel_agent::acp_server::agent_impl: close time.busy=12.5ms time.idle=23488s
+2026-09-25T04:39:54.379439Z  INFO run_acp_server:acp_bridge_dispatch{method="session/prompt" queue_wait_ms=0}: chisel_agent::acp_server: close time.busy=17.2ms time.idle=23488s
+2026-09-25T04:39:54.379745Z  INFO run_acp_server: chisel_server::acp: close time.busy=2.17s time.idle=23494s
+# [excerpt end -- 1563 additional periodic 'skills discovery' poll lines omitted; they recur every 15s and are the ONLY log activity during the dead windows]
