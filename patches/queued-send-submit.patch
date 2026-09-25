@@ -1,0 +1,5 @@
+--- a/index.js	2026-09-25 13:36:11.108760900 -0700
++++ b/index.js	2026-09-25 13:36:11.108760900 -0700
+@@ -1 +1 @@
+-if(!eC&&en&&eS$(en)&&ei){let t={id:crypto.randomUUID(),contentBlocks:s};if(!O())return;e$o.dispatch(eLM({sessionId:ei,message:t})),tw(),a.clear(),th();let n=e$o.getState().acp,r=(n.perSession[ei]?.queuedMessages??[]).length<=1&&Object.values(n.clientRequests).some(e=>"pending"===e.status&&(0,eo9.isPermissionRequest)(e.request)&&eTa(e.providerId,e.request.params.sessionId)===ei);(e||r)&&x?(x(t.id),ej("ACP_MESSAGE_QUEUED",{...l,interrupt:"true"})):ej("ACP_MESSAGE_QUEUED",{...l});return}
++if(!eC&&en&&eS$(en)&&ei){let t={id:crypto.randomUUID(),contentBlocks:s};if(!O())return;e$o.dispatch(eLM({sessionId:ei,message:t})),tw(),a.clear(),th();let n=e$o.getState().acp,r=(n.perSession[ei]?.queuedMessages??[]).length<=1&&Object.values(n.clientRequests).some(e=>"pending"===e.status&&(0,eo9.isPermissionRequest)(e.request)&&eTa(e.providerId,e.request.params.sessionId)===ei);x?(x(t.id),ej("ACP_MESSAGE_QUEUED",{...l,interrupt:"true"})):ej("ACP_MESSAGE_QUEUED",{...l});return}

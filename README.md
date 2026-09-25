@@ -69,11 +69,24 @@ Both front-ends are ACP clients of the same `devin.exe acp` agent process:
 - `resources/app/out/vs/workbench/windsurf-chat-client/index.js`
 - `resources/app/node_modules/@exa/chat-client/index.js`
 
-`tgp` previously did `session/cancel` + wait + `session/prompt` whenever the
-session status was "working". The patched version sends `session/prompt`
-directly: the server steers the message into the open turn. It also caps the
-UI-side wait at 5s, since the prompt RPC only resolves when the held-open turn
-drains. Files: `tgp.before.js`, `tgp.after.js`, `tgp.patch`.
+Two spots were patched:
+
+1. `tgp` (queued-message force-send) previously did `session/cancel` + wait +
+   `session/prompt` whenever the session status was "working". The patched
+   version sends `session/prompt` directly: the server steers the message into
+   the open turn. It also caps the UI-side wait at 5s, since the prompt RPC
+   only resolves when the held-open turn drains.
+   Files: `tgp.before.js`, `tgp.after.js`, `tgp.patch`.
+
+2. The composer submit branch enqueued the typed message while the session was
+   working and only auto-sent it for an explicit send-now flag or a pending
+   permission question; otherwise the message sat in the queue and needed a
+   second Enter (the "double-enter" problem). The patched version always calls
+   `x(t.id)` (interruptWithQueuedMessage -> the patched `tgp` -> steered
+   `session/prompt`), so a single Enter sends the message into the running
+   turn. If the send fails, `eGQ` re-queues it automatically.
+   Files: `queued-send-submit.before.js`, `queued-send-submit.after.js`,
+   `queued-send-submit.patch`.
 
 ## The repro
 
